@@ -1,10 +1,10 @@
-pet "Neko" {
+pet Neko {
   type = "cat"
   characteristics {
     sound = env.CAT_SOUND
   }
 }
 
-pet "Whiskers" {
+pet Whiskers {
   type = "cat"
 }
