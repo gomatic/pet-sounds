@@ -1,8 +1,8 @@
 package main
 
 import (
-	"flag"
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"time"
@@ -20,22 +20,26 @@ func main() {
 }
 
 func inner() error {
-	var inputFile string
-	flag.StringVar(&inputFile, "file", defaultFileName, "the file to read pet configuration from")
-	flag.StringVar(&inputFile, "f", defaultFileName, "the file to read pet configuration from (shorthand)")
-	flag.Parse()
+
+	args := os.Args[1:]
+	if len(args) == 0 {
+		args = []string{defaultFileName}
+	}
 
 	// There is a random function for the HCL configuration.
 	rand.Seed(time.Now().Unix())
 
-	pets, err := ReadConfig(inputFile)
-	if err != nil {
-		return err
-	}
+	for _, inputFile := range args {
+		log.Print(inputFile)
+		pets, err := ReadConfig(inputFile)
+		if err != nil {
+			return err
+		}
 
-	for _, p := range pets {
-		p.Say()
-		p.Act()
+		for _, p := range pets {
+			p.Say()
+			p.Act()
+		}
 	}
 
 	return nil
