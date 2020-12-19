@@ -1,8 +1,8 @@
-pet "Ink" {
+pet Ink {
   type = "cat"
 }
 
-pet "Swinney" {
+pet Swinney {
   type = "dog"
   characteristics {
     breed = "Dachshund"
